@@ -1,17 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import Cart from "./Pages/Cart"; // 'Cart' should be capitalized correctly
+import Checkout from "./Pages/Checkout";
+import Testimonial from "./Components/testimonial/Testimonial";
+import ContactUs from "./Pages/ContactUs";
+import reportWebVitals from "./reportWebVitals";
+import { productstore } from "./Store/ProductsStore/ProductsStore.js";
+import { Provider } from "react-redux";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import LandingPage from "./Pages/LandingPage";
+import LoginForm from "./Components/AutnticationFrom/LoginForm";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/", element: <LandingPage /> },
+      { path: "/login", element: <LoginForm /> },
+      { path: "/cart", element: <Cart /> },
+      { path: "/checkout", element: <Checkout /> },
+      { path: "/testimonial", element: <Testimonial /> },
+      { path: "/contact", element: <ContactUs /> },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={productstore}>
+      <ToastContainer />
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
