@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const LoginForm = () => {
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("emilys");
+  const [password, setPassword] = useState("emilyspass");
   const navigate = useNavigate();
 
   const handleEmail = (event) => {
